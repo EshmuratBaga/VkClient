@@ -1,28 +1,23 @@
-package project.baga.vk.com.vkclient.ui;
+package project.baga.vk.com.vkclient.ui.main;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
-import com.vk.sdk.util.VKUtil;
-
-import java.util.Arrays;
 
 import project.baga.vk.com.vkclient.CurrentUser;
+import project.baga.vk.com.vkclient.MyApplication;
 import project.baga.vk.com.vkclient.R;
 import project.baga.vk.com.vkclient.consts.ApiConstance;
-import project.baga.vk.com.vkclient.ui.main.MainPresenter;
-import project.baga.vk.com.vkclient.ui.main.MainView;
+import project.baga.vk.com.vkclient.ui.BaseActivity;
+import project.baga.vk.com.vkclient.ui.news.NewsFeedFragment;
 
-public class MainActivity extends MvpAppCompatActivity implements MainView{
+public class MainActivity extends BaseActivity implements MainView{
 
     @InjectPresenter
     MainPresenter presenter;
@@ -30,9 +25,14 @@ public class MainActivity extends MvpAppCompatActivity implements MainView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        MyApplication.getApplicationComponent().inject(this);
 
         presenter.checkAuth();
+    }
+
+    @Override protected int getMainContentLayout() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -59,5 +59,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainView{
 
     @Override public void signedIn() {
         Toast.makeText(this, CurrentUser.getId(), Toast.LENGTH_SHORT).show();
+        setContent(new NewsFeedFragment());
     }
 }
