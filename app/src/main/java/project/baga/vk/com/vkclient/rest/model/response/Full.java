@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Full<T> {
 
-    @SerializedName("response") @Expose
+    @SerializedName("response")
+    @Expose
     public T response;
 }
