@@ -2,6 +2,7 @@ package project.baga.vk.com.vkclient.di.module;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Typeface;
 
 import javax.inject.Singleton;
 
@@ -22,8 +23,15 @@ public class ApplicationModule {
         this.application = application;
     }
 
-    @Singleton  @Provides
-    public Context provideContext(){
+    @Singleton
+    @Provides
+    public Context provideContext() {
         return application;
+    }
+
+    @Provides
+    @Singleton
+    Typeface provideGoogleFontTypeface(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), "MaterialIcons-Regular.ttf");
     }
 }

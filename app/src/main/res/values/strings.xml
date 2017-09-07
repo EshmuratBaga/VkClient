@@ -5,4 +5,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_news">News</string>
+
+    <string name="font_heart">&amp;#xE87d</string>
+    <string name="font_comment">&amp;#xE0B9</string>
+    <string name="font_repost">&amp;#xE050</string>
 </resources>
